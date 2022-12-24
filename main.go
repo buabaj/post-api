@@ -21,5 +21,6 @@ func main() {
 	r.PUT("/posts/:id", controllers.UpdatePost)
 	r.DELETE("/posts/:id", controllers.DeletePost)
 	r.Use(cors.Default())
+
 	r.Run()
 }
