@@ -5,6 +5,12 @@ A simple Post API built with Gin and Gorm in the Go programming language and Pos
 
 This is a REST API that allows you to create, read, update and delete posts. It is built with Gin and Gorm in the Go programming language and Postgres as a database.
 
+# Live Environment
+
+- The Deployed Version of the API can be found at `https://post-api-zc3z.onrender.com/`
+
+- The API documentation for the deployment can be found at `https://documenter.getpostman.com/view/8806007/2s8Z6vYuAP`
+
 # Usage
 
 - Clone the repository
@@ -34,9 +40,9 @@ go run main.go
 
 | Name | Request Method | Endpoint | Parameters | Response code |
 | --- | --- | --- | --- | --- |
-| List all Posts | GET | localhost:8080/posts/ | None | 200 OK |
+| List all Posts | GET | localhost:8080/posts | None | 200 OK |
 | Get single post | GET | localhost:8080/posts/{id} | id: int | 200 OK |
-| Add Post | POST | localhost:8080/posts/ | None | 201 Created |
+| Add Post | POST | localhost:8080/posts | None | 201 Created |
 | Delete Post | DELETE | localhost:8080/posts/{id} | id: int | 200 OK |
 | Update Post | PUT | localhost:8080/posts/{id} | id: int | 200 OK |
 
