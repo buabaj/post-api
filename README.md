@@ -7,9 +7,9 @@ This is a REST API that allows you to create, read, update and delete posts. It 
 
 # Live Environment
 
-- The Deployed Version of the API can be found at `https://post-api-zc3z.onrender.com/`
+- The Deployed Version of the API can be found at [https://post-api-zc3z.onrender.com/](https://post-api-zc3z.onrender.com/)
 
-- The API documentation for the deployment can be found at `https://documenter.getpostman.com/view/8806007/2s8Z6vYuAP`
+- The API documentation for the deployment can be found at [https://documenter.getpostman.com/view/8806007/2s8Z6vYuAP](https://documenter.getpostman.com/view/8806007/2s8Z6vYuAP)
 
 # Usage
 
