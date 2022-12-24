@@ -1,9 +1,7 @@
 package initializers
 
 import (
-	"fmt"
 	"log"
-	"os"
 
 	"github.com/buabaj/post-api/models"
 	"gorm.io/driver/postgres"
@@ -14,9 +12,8 @@ var DB *gorm.DB
 
 func ConnectDB() {
 	var err error
-	dbURL := os.Getenv("DB_URL")
-	dsn := string(dbURL)
-	fmt.Println(dsn)
+	//dbURL := os.Getenv("DB_URL")
+	dsn := "host=dpg-cejep9cgqg4ekmcq9hjg-a user=buabaj password=fJhNHrIlGQJJjqmI6s0k5LD4q4RUkzXw dbname=post_db_01n8 port=5432 sslmode=require"
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
