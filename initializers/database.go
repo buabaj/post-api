@@ -1,7 +1,6 @@
 package initializers
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/buabaj/post-api/models"
@@ -16,7 +15,6 @@ func ConnectDB() {
 	var err error
 	var DB_URL = envy.Get("DB_URL", "")
 	dsn := DB_URL
-	fmt.Println(dsn)
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
