@@ -26,7 +26,7 @@ func CreatePost(c *gin.Context) {
 	result := initializers.DB.Create(&post)
 
 	if result.Error != nil {
-		c.Status(400)
+		c.Status(500)
 		log.Fatal(result.Error)
 		return
 	}
@@ -42,7 +42,7 @@ func GetPosts(c *gin.Context) {
 	result := initializers.DB.Find(&posts)
 
 	if result.Error != nil {
-		c.Status(400)
+		c.Status(500)
 		log.Fatal(result.Error)
 		return
 	}
@@ -56,28 +56,41 @@ func GetPosts(c *gin.Context) {
 func GetPost(c *gin.Context) {
 	var post models.Post
 	id := c.Param("id")
-	result := initializers.DB.First(&post, id)
+	result := initializers.DB.Limit(1).Find(&post, id)
+
+	if post.ID == 0 {
+		c.JSON(404, gin.H{
+			"message": "post not found"})
+		return
+	}
 
 	if result.Error != nil {
-		c.Status(400)
+		c.Status(500)
 		log.Fatal(result.Error)
 		return
 	}
 
 	c.JSON(200, gin.H{
-		"message": "post fetched",
+		"message": "post fetched successfully",
 		"post":    post,
 	})
+
 }
 
 func UpdatePost(c *gin.Context) {
 	var post models.Post
 	id := c.Param("id")
-	result := initializers.DB.First(&post, id)
+	result := initializers.DB.Limit(1).Find(&post, id)
+
+	if post.ID == 0 {
+		c.JSON(404, gin.H{
+			"message": "post not found"})
+		return
+	}
 
 	if result.Error != nil {
-		c.Status(400)
-		log.Fatal(result.Error)
+		c.Status(404)
+		log.Fatal("Error: ", result.Error, "Post not found")
 		return
 	}
 
@@ -91,7 +104,7 @@ func UpdatePost(c *gin.Context) {
 	result = initializers.DB.Model(&post).Updates(models.Post{Title: body.Title, Body: body.Body, Author: body.Author})
 
 	if result.Error != nil {
-		c.Status(400)
+		c.Status(500)
 		log.Fatal(result.Error)
 		return
 	}
@@ -105,18 +118,24 @@ func UpdatePost(c *gin.Context) {
 func DeletePost(c *gin.Context) {
 	var post models.Post
 	id := c.Param("id")
-	result := initializers.DB.First(&post, id)
+	result := initializers.DB.Limit(1).Find(&post, id)
+
+	if post.ID == 0 {
+		c.JSON(404, gin.H{
+			"message": "post not found"})
+		return
+	}
 
 	if result.Error != nil {
-		c.Status(400)
-		log.Fatal(result.Error)
+		c.Status(500)
+		log.Fatal("Error: ", result.Error)
 		return
 	}
 
 	result = initializers.DB.Delete(&post, id)
 
 	if result.Error != nil {
-		c.Status(400)
+		c.Status(500)
 		log.Fatal(result.Error)
 		return
 	}

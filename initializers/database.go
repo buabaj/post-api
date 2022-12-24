@@ -19,3 +19,7 @@ func ConnectDB() {
 		log.Fatal("Error connecting to database:", err)
 	}
 }
+
+func GetDB() *gorm.DB {
+	return DB
+}
