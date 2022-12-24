@@ -31,7 +31,7 @@ func CreatePost(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, gin.H{
+	c.JSON(201, gin.H{
 		"message": "post created successfully",
 		"post":    post,
 	})
